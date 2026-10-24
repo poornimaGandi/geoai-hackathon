@@ -10,7 +10,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 # 1. MODEL CONFIGURATION
 # --------------------------------------------------
 
-MODEL_NAME = "HuggingFaceTB/SmolLM2-1.7B-Instruct"
+MODEL_NAME = "HuggingFaceTB/SmolLM2-360M-Instruct"
 
 tokenizer = None
 model = None
