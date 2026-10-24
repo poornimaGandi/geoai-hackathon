@@ -1,0 +1,7 @@
+streamlit
+pandas
+pydeck
+plotly
+requests
+torch
+transformers
