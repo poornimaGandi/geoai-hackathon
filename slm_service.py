@@ -1,6 +1,7 @@
 
 import json
 import re
+from functools import lru_cache
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
@@ -65,24 +66,21 @@ TIME_PHRASES = [
 # 4. LOAD THE SLM MODEL
 # --------------------------------------------------
 
+@lru_cache(maxsize=1)
 def load_model():
-    global tokenizer, model
-
-    if model is not None and tokenizer is not None:
-        return
-
     print("Loading SLM tokenizer...")
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+    loaded_tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
 
     print("Loading SLM model...")
-    model = AutoModelForCausalLM.from_pretrained(
+    loaded_model = AutoModelForCausalLM.from_pretrained(
         MODEL_NAME,
         torch_dtype=torch.float32
     )
 
-    model.eval()
+    loaded_model.eval()
     print("SLM loaded successfully!\n")
 
+    return loaded_tokenizer, loaded_model
 
 # --------------------------------------------------
 # 5. FIND ACTIVITY FROM THE USER'S ACTUAL QUERY
