@@ -1,5 +1,5 @@
 
-from config.activity_rules import ACTIVITY_RULES
+from activity_rules import ACTIVITY_RULES
 
 
 
