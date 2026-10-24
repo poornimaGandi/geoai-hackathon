@@ -283,7 +283,8 @@ def normalize_result(result, query):
 # --------------------------------------------------
 
 def extract_query_details(query):
-    load_model()
+    global tokenizer, model
+    tokenizer, model = load_model()
 
     prompt = f"""You extract information from outdoor activity requests.
 
